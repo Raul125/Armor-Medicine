@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <AssemblyName>ArmorMedicine</AssemblyName>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <Import Project="../EXILED.props" />
+
+  <ItemGroup>
+    <None Remove="Handlers\Player.cs~RF24482ce3.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EXILED" Version="2.8.0" />
+    <PackageReference Include="StyleCop.Analyzers" Version="$(StyleCopVersion)" IncludeAssets="All" PrivateAssets="All" />
+    <PackageReference Include="YamlDotNet" Version="$(YamlDotNetVersion)" />
+    <PackageReference Include="Lib.Harmony" Version="$(HarmonyVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath>..\SLHub-master\SLHub\bin\Release\Assembly-CSharp-firstpass.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\SLHub-master\SLHub\bin\Release\Assembly-CSharp-Publicized.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\SLHub-master\SLHub\bin\Release\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
