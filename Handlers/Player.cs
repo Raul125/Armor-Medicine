@@ -20,25 +20,6 @@ namespace ArmorMedicine.Handlers
         {
             switch (ev.Item)
             {
-                case ItemType.Painkillers:
-                    {
-                        if (Instance.Config.Painkillers != 0)
-                        {
-                            if (!Instance.Config.WillDecay)
-                            {
-                                ev.Player.ArtificialHealth += Instance.Config.Painkillers;
-
-                                ev.Player.ReferenceHub.playerStats.artificialHpDecay = 0;
-                            }
-                            else
-                            {
-                                ev.Player.ArtificialHealth += Instance.Config.Painkillers;
-                            }
-                        }
-
-                        return;
-                    }
-
                 case ItemType.Adrenaline:
                     {
                         if (Instance.Config.Adrenaline != 0)
@@ -47,7 +28,10 @@ namespace ArmorMedicine.Handlers
                             {
                                 ev.Player.ArtificialHealth += Instance.Config.Adrenaline;
 
-                                ev.Player.ReferenceHub.playerStats.artificialHpDecay = 0;
+                                if (ev.Player.ReferenceHub.playerStats.artificialHpDecay != 0)
+                                {
+                                    ev.Player.ReferenceHub.playerStats.artificialHpDecay = 0;
+                                }
                             }
                             else
                             {
@@ -66,7 +50,10 @@ namespace ArmorMedicine.Handlers
                             {
                                 ev.Player.ArtificialHealth += Instance.Config.Medkit;
 
-                                ev.Player.ReferenceHub.playerStats.artificialHpDecay = 0;
+                                if (ev.Player.ReferenceHub.playerStats.artificialHpDecay != 0)
+                                {
+                                    ev.Player.ReferenceHub.playerStats.artificialHpDecay = 0;
+                                }
                             }
                             else
                             {
@@ -85,7 +72,10 @@ namespace ArmorMedicine.Handlers
                             {
                                 ev.Player.ArtificialHealth += Instance.Config.SCP207;
 
-                                ev.Player.ReferenceHub.playerStats.artificialHpDecay = 0;
+                                if (ev.Player.ReferenceHub.playerStats.artificialHpDecay != 0)
+                                {
+                                    ev.Player.ReferenceHub.playerStats.artificialHpDecay = 0;
+                                }
                             }
                             else
                             {
@@ -104,7 +94,10 @@ namespace ArmorMedicine.Handlers
                             {
                                 ev.Player.ArtificialHealth += Instance.Config.SCP500;
 
-                                ev.Player.ReferenceHub.playerStats.artificialHpDecay = 0;
+                                if (ev.Player.ReferenceHub.playerStats.artificialHpDecay != 0)
+                                {
+                                    ev.Player.ReferenceHub.playerStats.artificialHpDecay = 0;
+                                }
                             }
                             else
                             {
@@ -117,7 +110,31 @@ namespace ArmorMedicine.Handlers
             }
         }
 
-        /// <inheritdoc cref="Handlers.Player.OnUsedMedicalItem(UsedMedicalItemEventArgs)"/>
+        /// <inheritdoc cref="Handlers.Player.OnUsingMedicalItem(UsingMedicalItemEventArgs)"/>
+        public void OnUsingMedicalItem(UsingMedicalItemEventArgs ev)
+        {
+            if (ev.Item == ItemType.Painkillers && ev.IsAllowed)
+            {
+                if (Instance.Config.Painkillers != 0)
+                {
+                    if (!Instance.Config.WillDecay)
+                    {
+                        ev.Player.ArtificialHealth += Instance.Config.Painkillers;
+
+                        if (ev.Player.ReferenceHub.playerStats.artificialHpDecay != 0)
+                        {
+                            ev.Player.ReferenceHub.playerStats.artificialHpDecay = 0;
+                        }
+                    }
+                    else
+                    {
+                        ev.Player.ArtificialHealth += Instance.Config.Painkillers;
+                    }
+                }
+            }
+        }
+
+        /// <inheritdoc cref="Handlers.Player.OnChangingRole(ChangingRoleEventArgs)"/>
         public void OnChangingRole(ChangingRoleEventArgs ev)
         {
             if (ev.Player.ReferenceHub.playerStats.artificialHpDecay == 0)
