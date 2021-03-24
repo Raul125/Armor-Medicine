@@ -29,7 +29,7 @@ namespace ArmorMedicine
         /// Gets the int config.
         /// </summary>
         [Description("Number of AHP being given per use of medical item")]
-        public float Painkillers { get; private set; } = 10;
+        public float Painkillers { get; private set; } = 20;
 
         /// <summary>
         /// Gets the int config.

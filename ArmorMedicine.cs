@@ -16,7 +16,7 @@ namespace ArmorMedicine
     {
         private static ArmorMedicine singleton = new ArmorMedicine();
 
-        private Handlers.Player eventsPl;
+        private Handlers.Mixed eventsPl;
 
         private ArmorMedicine()
         {
@@ -66,7 +66,7 @@ namespace ArmorMedicine
         /// </summary>
         private void RegisterEvents()
         {
-            this.eventsPl = new Handlers.Player();
+            this.eventsPl = new Handlers.Mixed();
             Exiled.Events.Handlers.Player.MedicalItemUsed += this.eventsPl.OnUsedMedicalItem;
             Exiled.Events.Handlers.Player.UsingMedicalItem += this.eventsPl.OnUsingMedicalItem;
             Exiled.Events.Handlers.Player.ChangingRole += this.eventsPl.OnChangingRole;
@@ -79,6 +79,7 @@ namespace ArmorMedicine
         {
             Exiled.Events.Handlers.Player.MedicalItemUsed -= this.eventsPl.OnUsedMedicalItem;
             Exiled.Events.Handlers.Player.UsingMedicalItem -= this.eventsPl.OnUsingMedicalItem;
+
             Exiled.Events.Handlers.Player.ChangingRole -= this.eventsPl.OnChangingRole;
             this.eventsPl = null;
         }
