@@ -37,7 +37,7 @@ namespace ArmorMedicine
         public override string Prefix { get; } = "ArmorMedicine";
 
         /// <inheritdoc/>
-        public override Version Version { get; } = new Version(1, 0, 1);
+        public override Version Version { get; } = new Version(1, 0, 2);
 
         /// <inheritdoc/>
         public override Version RequiredExiledVersion { get; } = new Version(2, 8, 0);
