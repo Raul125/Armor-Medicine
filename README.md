@@ -7,7 +7,7 @@ Every item that can heal you will provide configurable number of AHP.
 | --- | --- | --- | --- |
 | IsEnabled | bool | Indicates whether the plugin is enabled or not | true |
 | WillDecay | bool | Will AHP slowly decay or stay permament? | true |
-| Painkillers | float | Number of AHP being given per use of medical item | 10 |
+| Painkillers | float | Number of AHP being given per use of medical item | 20 |
 | Adrenaline | float | It doesn't overrides the adrenaline hp (30), it adds more <3 | 0 |
 | Medkit | float | Number of AHP being given per use of medical item | 20 |
 | SCP207 | float | Number of AHP being given per use of medical item | 40 |
