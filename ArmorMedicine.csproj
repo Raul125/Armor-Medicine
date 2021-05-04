@@ -14,7 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="EXILED" Version="2.8.0" />
     <PackageReference Include="StyleCop.Analyzers" Version="$(StyleCopVersion)" IncludeAssets="All" PrivateAssets="All" />
     <PackageReference Include="YamlDotNet" Version="$(YamlDotNetVersion)" />
     <PackageReference Include="Lib.Harmony" Version="$(HarmonyVersion)" />
@@ -26,6 +25,18 @@
     </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>..\SLHub-master\SLHub\bin\Release\Assembly-CSharp-Publicized.dll</HintPath>
+    </Reference>
+    <Reference Include="Exiled.API">
+      <HintPath>..\refs\Exiled.API.dll</HintPath>
+    </Reference>
+    <Reference Include="Exiled.Events">
+      <HintPath>..\refs\Exiled.Events.dll</HintPath>
+    </Reference>
+    <Reference Include="Exiled.Loader">
+      <HintPath>..\refs\Exiled.Loader.dll</HintPath>
+    </Reference>
+    <Reference Include="Subclass">
+      <HintPath>C:\Users\jorge\Downloads\Subclass.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>..\SLHub-master\SLHub\bin\Release\UnityEngine.CoreModule.dll</HintPath>

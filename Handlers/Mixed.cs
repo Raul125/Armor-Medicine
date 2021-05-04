@@ -25,6 +25,14 @@ namespace ArmorMedicine.Handlers
                 return;
             }
 
+            if (Instance.IsAdvancedSubclassing)
+            {
+                if (this.HasNoArmorDecayAbility(ev.Player))
+                {
+                    return;
+                }
+            }
+
             switch (ev.Item)
             {
                 case ItemType.Medkit:
@@ -35,9 +43,9 @@ namespace ArmorMedicine.Handlers
                             {
                                 ev.Player.ArtificialHealth += Instance.Config.Medkit;
 
-                                if (ev.Player.ReferenceHub.playerStats.artificialHpDecay != 0)
+                                if (ev.Player.ArtificialHealthDecay != 0)
                                 {
-                                    ev.Player.ReferenceHub.playerStats.artificialHpDecay = 0;
+                                    ev.Player.ArtificialHealthDecay = 0;
                                 }
                             }
                             else
@@ -57,9 +65,9 @@ namespace ArmorMedicine.Handlers
                             {
                                 ev.Player.ArtificialHealth += Instance.Config.SCP207;
 
-                                if (ev.Player.ReferenceHub.playerStats.artificialHpDecay != 0)
+                                if (ev.Player.ArtificialHealthDecay != 0)
                                 {
-                                    ev.Player.ReferenceHub.playerStats.artificialHpDecay = 0;
+                                    ev.Player.ArtificialHealthDecay = 0;
                                 }
                             }
                             else
@@ -81,6 +89,14 @@ namespace ArmorMedicine.Handlers
                 return;
             }
 
+            if (Instance.IsAdvancedSubclassing)
+            {
+                if (this.HasNoArmorDecayAbility(ev.Player))
+                {
+                    return;
+                }
+            }
+
             switch (ev.Item)
                 {
                     case ItemType.Adrenaline:
@@ -91,9 +107,9 @@ namespace ArmorMedicine.Handlers
                                 {
                                     ev.Player.ArtificialHealth += Instance.Config.Adrenaline;
 
-                                    if (ev.Player.ReferenceHub.playerStats.artificialHpDecay != 0)
+                                    if (ev.Player.ArtificialHealthDecay != 0)
                                     {
-                                        ev.Player.ReferenceHub.playerStats.artificialHpDecay = 0;
+                                        ev.Player.ArtificialHealthDecay = 0;
                                     }
                                 }
                                 else
@@ -113,9 +129,9 @@ namespace ArmorMedicine.Handlers
                                 {
                                     ev.Player.ArtificialHealth += Instance.Config.SCP500;
 
-                                    if (ev.Player.ReferenceHub.playerStats.artificialHpDecay != 0)
+                                    if (ev.Player.ArtificialHealthDecay != 0)
                                     {
-                                        ev.Player.ReferenceHub.playerStats.artificialHpDecay = 0;
+                                        ev.Player.ArtificialHealthDecay = 0;
                                     }
                                 }
                                 else
@@ -135,9 +151,9 @@ namespace ArmorMedicine.Handlers
                                 {
                                     ev.Player.ArtificialHealth += Instance.Config.Painkillers;
 
-                                    if (ev.Player.ReferenceHub.playerStats.artificialHpDecay != 0)
+                                    if (ev.Player.ArtificialHealthDecay != 0)
                                     {
-                                        ev.Player.ReferenceHub.playerStats.artificialHpDecay = 0;
+                                        ev.Player.ArtificialHealthDecay = 0;
                                     }
                                 }
                                 else
@@ -154,10 +170,26 @@ namespace ArmorMedicine.Handlers
         /// <inheritdoc cref="Handlers.Mixed.OnChangingRole(ChangingRoleEventArgs)"/>
         public void OnChangingRole(ChangingRoleEventArgs ev)
         {
-            if (ev.Player.ReferenceHub.playerStats.artificialHpDecay == 0)
+            if (ev.Player.ArtificialHealthDecay == 0)
             {
-                ev.Player.ReferenceHub.playerStats.artificialHpDecay = 0.75f;
+                ev.Player.ArtificialHealthDecay = 0.75f;
             }
+        }
+
+        private bool HasNoArmorDecayAbility(Player ply)
+        {
+            var sub = Subclass.API.GetPlayersSubclass(ply);
+            if (sub == null)
+            {
+                return false;
+            }
+
+            if (sub.Abilities.Contains(Subclass.AbilityType.NoArmorDecay))
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }
